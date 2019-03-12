@@ -1,17 +1,22 @@
 //Dont define stdio here we will include this library under stdio & stdlib & string & time under main source code.
+int message_size=sizeof(message);
 typedef struct{
   char * text;
-  long int timestamp;
+  time_t timestamp;
   char * username;
 }message;
+
 typedef struct list{
   message msg;
   struct list * next;
 }message_list;
+
 typedef struct{
-  char * username;
+  char * name;
+  char * host_username;
   message_list database;
 }server;
+
 typedef struct{
   int year;
   int month;
@@ -20,7 +25,8 @@ typedef struct{
   int minute;
   int second;
 }t_;
-t_ get_time(time_t timestamp){
+
+t_ get_time(time_t timestamp){//returns time structure t_ builded from timestamp
   char * tmp=ctime(&timestamp);
   char tmpmonth[4];
   t_ res;
@@ -29,29 +35,65 @@ t_ get_time(time_t timestamp){
   tmpmonth[3]=0;
   if(!strcmp(tmpmonth,"Jan")){
     res.month=1;
-  }elseif(!strcmp(tmpmonth,"Feb")){
+  }else if(!strcmp(tmpmonth,"Feb")){
     res.month=2;
-  }elseif(!strcmp(tmpmonth,"Mar")){
+  }else if(!strcmp(tmpmonth,"Mar")){
     res.month=3;
-  }elseif(!strcmp(tmpmonth,"Apr")){
+  }else if(!strcmp(tmpmonth,"Apr")){
     res.month=4;
-  }elseif(!strcmp(tmpmonth,"May")){
+  }else if(!strcmp(tmpmonth,"May")){
     res.month=5;
-  }elseif(!strcmp(tmpmonth,"Jun")){
+  }else if(!strcmp(tmpmonth,"Jun")){
     res.month=6;
-  }elseif(!strcmp(tmpmonth,"Jul")){ 
+  }else if(!strcmp(tmpmonth,"Jul")){ 
     res.month=7;
-  }elseif(!strcmp(tmpmonth,"Aug")){
+  }else if(!strcmp(tmpmonth,"Aug")){
     res.month=8;
-  }elseif(!strcmp(tmpmonth,"Sep")){
+  }else if(!strcmp(tmpmonth,"Sep")){
     res.month=9;
-  }elseif(!strcmp(tmpmonth,"Oct")){
+  }else if(!strcmp(tmpmonth,"Oct")){
     res.month=10;
-  }elseif(!strcmp(tmpmonth,"Nov")){
+  }else if(!strcmp(tmpmonth,"Nov")){
     res.month=11;
-  }elseif(!strcmp(tmpmonth,"Dec")){
+  }else if(!strcmp(tmpmonth,"Dec")){
     res.month=12;
   }else{
-    printf("Error parsing month.");
+    printf("Error parsing month.\n");
   }
   return res;
+}
+
+void append_message(message_list * database, message * newmessage){
+  database->next=newmessage;
+  database->next->next=NULL;
+}
+void delete_message(message_list * database, char * text){
+  message_list * tmp=database;
+  if(database==NULL){
+    printf("There is no message in this database.");
+  }else{
+    while(1){
+      if(tmp->next!=NULL){//if next element doesnt exist stop.
+        if(strcmp(tmp->next.msg.text,text)){//if message found at next element stop.
+          break;
+        }else{//if not found yet iterate
+          tmp=tmp->next;
+        }
+      }else{
+        break;
+      }
+    }
+    if(tmp==NULL){
+      printf("Error while itering over messages. Message not found.\n");//print error if message not found.
+    }else{
+      if(temp->next->next==NULL){//delete if it is the last message
+        free(temp->next);
+        temp->next=NULL;
+      }else{//delete message in between two messages
+        message_list * temp=tmp->next;
+        tmp->next=temp->next;
+        free(temp);
+      }
+    }
+  }
+}
