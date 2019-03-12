@@ -27,29 +27,29 @@ t_ get_time(time_t timestamp){
   sscanf(tmp,"%*c%*c%*c %*c%*c%*c %d %d:%d:%d %d",&res.day,&res.hour,&res.minute,&res.second,&res.year);
   sscanf(tmp,"%*c%*c%*c %c%c%c %*d %*d:%*d:%*d %*d",&tmpmonth[0],&tmpmonth[1],&tmpmonth[2]);
   tmpmonth[3]=0;
-  if(!strcmp(tmpmonth,"Jan"){
+  if(!strcmp(tmpmonth,"Jan")){
     res.month=1;
-  }elseif(!strcmp(tmpmonth,"Feb"){
+  }elseif(!strcmp(tmpmonth,"Feb")){
     res.month=2;
-  }elseif(!strcmp(tmpmonth,"Mar"){
+  }elseif(!strcmp(tmpmonth,"Mar")){
     res.month=3;
-  }elseif(!strcmp(tmpmonth,"Apr"){
+  }elseif(!strcmp(tmpmonth,"Apr")){
     res.month=4;
-  }elseif(!strcmp(tmpmonth,"May"){
+  }elseif(!strcmp(tmpmonth,"May")){
     res.month=5;
-  }elseif(!strcmp(tmpmonth,"Jun"){
+  }elseif(!strcmp(tmpmonth,"Jun")){
     res.month=6;
-  }elseif(!strcmp(tmpmonth,"Jul"){ 
+  }elseif(!strcmp(tmpmonth,"Jul")){ 
     res.month=7;
-  }elseif(!strcmp(tmpmonth,"Aug"){
+  }elseif(!strcmp(tmpmonth,"Aug")){
     res.month=8;
-  }elseif(!strcmp(tmpmonth,"Sep"){
+  }elseif(!strcmp(tmpmonth,"Sep")){
     res.month=9;
-  }elseif(!strcmp(tmpmonth,"Oct"){
+  }elseif(!strcmp(tmpmonth,"Oct")){
     res.month=10;
-  }elseif(!strcmp(tmpmonth,"Nov"){
+  }elseif(!strcmp(tmpmonth,"Nov")){
     res.month=11;
-  }elseif(!strcmp(tmpmonth,"Dec"){
+  }elseif(!strcmp(tmpmonth,"Dec")){
     res.month=12;
   }else{
     printf("Error parsing month.");
