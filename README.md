@@ -4,6 +4,6 @@
 ---
 
 
-- # First Project: Create a messaging app including a client and a dedicated server.
-- ## Groups had given briefing and expected to start project as soon as possible.
+- #### First Project: Create a messaging app including a client and a dedicated server.
+- ###### Groups had given briefing and expected to start project as soon as possible.
 
