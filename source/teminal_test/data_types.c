@@ -1,5 +1,15 @@
 //Dont define stdio here we will include this library under stdio & stdlib & string & time under main source code.
 int message_size=sizeof(message);
+
+typedef struct{
+  int year;
+  int month;
+  int day;
+  int hour;
+  int minute;
+  int second;
+}t_;
+
 typedef struct{
   char * text;
   time_t timestamp;
@@ -16,15 +26,6 @@ typedef struct{
   char * host_username;
   message_list database;
 }server;
-
-typedef struct{
-  int year;
-  int month;
-  int day;
-  int hour;
-  int minute;
-  int second;
-}t_;
 
 t_ get_time(time_t timestamp){//returns time structure t_ builded from timestamp
   char * tmp=ctime(&timestamp);
@@ -59,6 +60,7 @@ t_ get_time(time_t timestamp){//returns time structure t_ builded from timestamp
     res.month=12;
   }else{
     printf("Error parsing month.\n");
+    return 0;//returns zero if month cannot be parsed.
   }
   return res;
 }
