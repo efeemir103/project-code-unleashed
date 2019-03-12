@@ -1,8 +1,9 @@
 # project-code-unleashed
-Just a repo to code with team.
+##### Our Aim is to Create Applications
+###### That will be useful with the extend of our knowledge.
+---
 
----
-# Our Project is to Create Applications
-#### That will be useful with the extend of our knowledge.
----
-> Todo: Create a blueprint of application and part work to groups. 
+
+- # First Project: Create a messaging app including a client and a dedicated server.
+- ## Groups had given briefing and expected to start project as soon as possible.
+
