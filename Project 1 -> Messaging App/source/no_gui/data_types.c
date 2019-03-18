@@ -1,5 +1,8 @@
 //Dont define stdio here we will include this library under stdio & stdlib & string & time under main source code.
-int message_size=sizeof(message);
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <time.h>
 
 typedef struct{
   int year;
@@ -15,6 +18,8 @@ typedef struct{
   time_t timestamp;
   char * username;
 }message;
+
+int message_size=sizeof(message);
 
 typedef struct list{
   message msg;
@@ -60,13 +65,15 @@ t_ get_time(time_t timestamp){//returns time structure t_ builded from timestamp
     res.month=12;
   }else{
     printf("Error parsing month.\n");
-    return 0;//returns zero if month cannot be parsed.
+    exit(1);//exit execution sequence if month cannot be parsed.
   }
   return res;
 }
 
-void append_message(message_list * database, message * newmessage){
-  database->next=newmessage;
+void append_message(message_list * database, message newmessage){
+  database->next->msg.text=newmessage.text;
+  database->next->msg.timestamp=newmessage.timestamp;
+  database->next->msg.username=newmessage.username;
   database->next->next=NULL;
 }
 void delete_message(message_list * database, char * text){
@@ -76,7 +83,7 @@ void delete_message(message_list * database, char * text){
   }else{
     while(1){
       if(tmp->next!=NULL){//if next element doesnt exist stop.
-        if(strcmp(tmp->next.msg.text,text)){//if message found at next element stop.
+        if(strcmp(tmp->next->msg.text,text)){//if message found at next element stop.
           break;
         }else{//if not found yet iterate
           tmp=tmp->next;
@@ -88,9 +95,9 @@ void delete_message(message_list * database, char * text){
     if(tmp==NULL){
       printf("Error while itering over messages. Message not found.\n");//print error if message not found.
     }else{
-      if(temp->next->next==NULL){//delete if it is the last message
-        free(temp->next);
-        temp->next=NULL;
+      if(tmp->next->next==NULL){//delete if it is the last message
+        free(tmp->next);
+        tmp->next=NULL;
       }else{//delete message in between two messages
         message_list * temp=tmp->next;
         tmp->next=temp->next;
