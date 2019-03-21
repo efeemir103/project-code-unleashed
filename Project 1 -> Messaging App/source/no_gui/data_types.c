@@ -1,8 +1,4 @@
 //Dont define stdio here we will include this library under stdio & stdlib & string & time under main source code.
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <time.h>
 
 typedef struct{
   int year;
